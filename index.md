@@ -17,5 +17,6 @@ uaefhouaef
 
 {{ site.github.url }}
 
-{{ site.author.email_md5 }}
-{{ author.email_md5 }}
+aoenf:w
+
+{{ site.author }}
