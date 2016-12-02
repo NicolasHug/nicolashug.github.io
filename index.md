@@ -15,4 +15,7 @@ source Python library for building recommender systems.
 
 uaefhouaef
 
-{{ site.githuaab.url }}
+{{ site.github.url }}
+
+{{ site.author.email_md5 }}
+{{ author.email_md5 }}
