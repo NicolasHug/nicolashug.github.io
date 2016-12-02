@@ -2,17 +2,6 @@
 layout: page
 tagline:
 ---
-ouaefoaenf
-aefijaef
-aef
-aef
-ae
-fa
-e
-ae
-fae
-f
-ef
 
 {% for post in paginator.posts %}
 
