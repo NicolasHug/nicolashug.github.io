@@ -1,4 +1,4 @@
 My personal Webpage
 ===================
 
-[link](www.nicolas-hug.com)
+[link](http://nicolas-hug.com)
