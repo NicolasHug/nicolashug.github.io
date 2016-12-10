@@ -59,17 +59,13 @@
 			</a>
 			{% endif %}
       {% if site.author.linkedin %}
-      <li>
         <a type="button" class="navbar-toggle nav-link" href="https://linkedin.com/in/{{ site.author.linkedin }}">
           <i class="fa fa-linkedin fa-lg"></i>
         </a>
-      </li>
       {% endif %}
-		<li>
         <a type="button" class="navbar-toggle nav-link" href="{{site.github.url}}/assets/Nicolas_Hug_CV.pdf">
 				<i class="fa fa-file-text fa-lg"></i>
 			</a>
-		</li>
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<img src="http://www.gravatar.com/avatar/{{site.author.email_md5}}?s=35" class="img-circle" />
 				{{ site.title }}
