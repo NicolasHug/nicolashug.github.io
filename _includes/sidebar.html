@@ -37,6 +37,13 @@
 			</a>
 		</li>
 		{% endif %}
+		{% if site.author.linkedin %}
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/{{ site.author.linkedin }}">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		{% endif %}
 		<li>
 			<a class="btn btn-default btn-sm" href="{{site.github.url}}/assets/Nicolas_Hug_CV.pdf">
 				<i class="fa fa-file-text fa-lg"></i>
@@ -48,13 +55,6 @@
 		<li>
 			<a class="btn btn-default btn-sm" href="https://pinterest.com/{{ site.author.pinterest }}">
 				<i class="fa fa-pinterest fa-lg"></i>
-			</a>
-		</li>
-		{% endif %}
-		{% if site.author.linkedin %}
-		<li>
-			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/{{ site.author.linkedin }}">
-				<i class="fa fa-linkedin fa-lg"></i>
 			</a>
 		</li>
 		{% endif %}
