@@ -13,7 +13,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: About me
+      title: Nicolas Hug - About me
 
 description: Me me me and mostly me
 
