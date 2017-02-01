@@ -8,5 +8,6 @@ Hi, I'm a PhD student in Machine Learning at
 of [Surprise](http://surpriselib.com/), an open source Python library for
 building recommender systems.
 
-If you want to know more about me, please check out my
-[resume]({{site.base.url}}/resume.html)!
+In a near future (summer 2017), I'll be looking for a job. If you want to know
+more about me, please check out my
+[resume]({{site.base.url}}/assets/Nicolas_Hug_CV.pdf)!
