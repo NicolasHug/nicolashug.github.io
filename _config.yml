@@ -1,10 +1,10 @@
 # visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
-#paginate: 10 # pagination based on number of posts
+paginate: 10 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 markdown: kramdown
-#disqus: dbyll
+disqus: nicolashug
 #google_analytics: dbyll
 title: Nicolas Hug
 
@@ -13,7 +13,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: Nicolas Hug - About me
+      title: Nicolas Hug
 
 description: Me me me and mostly me
 
