@@ -7,6 +7,7 @@ markdown: kramdown
 disqus: nicolashug
 #google_analytics: dbyll
 title: Nicolas Hug
+exclude: [vendor]
 
 defaults:
   -
