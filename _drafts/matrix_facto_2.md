@@ -7,10 +7,13 @@ description:  TODO
 comments: true
 ---
 
+**Foreword**: this is the second part of a 3 parts article. Here are TODO and
+TODO.
+
 SVD of a (dense) rating matrix
 ==============================
 
-Let's just recap a bit:
+Let's just recap a bit what we have seen in the first part TODO:
 
 * PCA on the matrix $R$ will give us typical users. These typical users are of
   course represented as vectors (same length as the users, just like the creepy
@@ -69,6 +72,8 @@ Now, with this factorization, let's consider the rating of user $u$ for item
 $i$, that we will denote $r_{ui}$:
 
 $$
+\newcommand{\horzbar}{\Rule{2.5ex}{0.5pt}{0.1pt}}
+\newcommand{\vertbar}{\Rule{0.5pt}{1pt}{2.5ex}}
 \begin{pmatrix}
 &&&&\\
 &&r_{ui}&&\\
@@ -153,3 +158,7 @@ will be low. In our case, the rating of Alice for Titanic will be high, while
 that of Bob will be much lower because he's not so keen on romance movies. His
 rating for Toy Story will, however, be higher than that of Alice.
 
+We now have enough knowledge to apply SVD to a recommendation task. Until then,
+we assumed that the matrix $R$ was dense. In real scenario, it is obviously
+sparse (because our goal is precisely to make it dense). We will see how to do
+that in the last part of this article TODO.

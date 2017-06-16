@@ -7,34 +7,43 @@ description:  TODO
 comments: true
 ---
 
+**Foreword**: this is the first part of a 3 parts article. Here are TODO and TODO.
+
 About ten years ago, Netflix launched the [Netflix
 Prize](https://en.wikipedia.org/wiki/Netflix_Prize): an open contest where the
 goal was to design state-of-the-art algorithms for predicting ratings. During
-three years research teams developped many different prediction algorithms,
+3 years, research teams developped many different prediction algorithms,
 among which matrix factorization techniques stood out by their efficiency.
 
-The goal of this (long) article is twofold:
+**The goal of this series of posts is twofold**:
 - Give some insights on how matrix factorization **models** the ratings. To
   this end, we will illustrate how PCA and SVD work, using concrete examples.
   You may have already read explanations like *users and items are represented
   as vectors in a latent factors vector space, and ratings are defined as a dot
   product between two vectors*. If it makes no sense to you, I hope that you
   will understand what it means by the end of this article.
-- Explain how to derive and implement an algorithm for predicting ratings based
-  on matrix factorization. In its simplest form, this algorithm fits in TODO
-  lines of Python.
+- Explain how to derive and implement an algorithm for predicting ratings,
+  based on matrix factorization. In its simplest form, this algorithm fits in
+  TODO lines of Python.
 
 I tried to keep the math level of the article as low as possible, without
 trying to over-simplify things, and avoiding dull statements. My hope is that
 this article is accessible to ML begginers, while still being insightful to the
 more experienced.
 
+**This article is devided into 3 parts**: in the first part, we will clearly
+define the problem we plan to address, and provide some insights about PCA. In
+the second part TODO, we will review SVD and see how it models the ratings. In
+the last part TODO, we will see how to apply our knowledge of SVD to the rating
+prediction task, and derive an implementation of a matrix-factorzation-based
+algorithm.
+
 The problem
 ===========
 
-The problem we propose to address here is that of rating prediction. Our data
-is a rating history: ratings of users for items in the interval $[1, 5]$. We
-can put all this data into a sparse matrix called $R$:
+The problem we propose to address here is that of **rating prediction**. The
+data we have  is a rating history: ratings of users for items in the interval
+$[1, 5]$.  We can put all this data into a sparse matrix called $R$:
 
 $$
 R= \begin{pmatrix}
@@ -55,22 +64,28 @@ R= \begin{pmatrix}
 \end{matrix}
 $$
 
-Each row of the matrix correspond to a given user, and each column corresponds
+Each row of the matrix corresponds to a given user, and each column corresponds
 to a given item. For instance here, Alice has rated the first item with a
 rating of $1$, and Charlie has rated the third item with a rating of $4$. The
-matrix $R£ is sparse (more than 99% of the entries are missing), and our goal
-is to predict the missing entries, i.e. predict the $\color{#e74c3c}{?}$.
+matrix $R$ is sparse (more than 99% of the entries are missing), and **our goal
+is to predict the missing entries**, i.e. predict the $\color{#e74c3c}{?}$.
 
+To predict ratings, we will **factorize** the matrix $R$. This matrix
+factorization is fundamentally linked to **SVD**, which stands for Singular
+Value Decomposition.  SVD is one of the highlights of linear algebra. It's a
+beautiful result. When people tell you that math sucks, show them what SVD can
+do.
 
-
-SVD is one of the highlights of linear algebra. It's beautiful. When people
-tell you that math sucks, show them SVD. Before SVD, we need PCA which is
-almost as awesome as SVD:
+The aim of this article is to explain how SVD can be used for rating prediction
+purposes. But before we can dive into SVD in the second part TODO, we need to
+review what PCA is. PCA is only slightly less awesome than SVD, but it is still
+really cool.
 
 A little bit of PCA
 ===================
 
-We'll play around with the
+Let's forget the recommendation problem for 2 minutes. We'll play around with
+the
 [Olivetti](http://scikit-learn.org/stable/datasets/olivetti_faces.html#olivetti-faces)
 dataset. It's a set of greyscale images of faces from 40 people, making up a
 total of 400 images. Here are the the first 10 people:
@@ -196,10 +211,10 @@ Now, this is all good and fun, but we're interested in matrix factorization for
 recommendation purposes, right? So where is our matrix factorization, and what
 does it have to do with recommendation? PCA is actually a plug-and-play method:
 it works for any matrix. If your matrix contains images, it will reveal some
-typical images that can build back all of your initial images, such as here. If
-your matrix contains potatoes, PCA will reveal some typical potatoes that can
-build back all of your original potatoes. If your matrix contains ratings,
-well... Here we come.
+typical images that can build back all of your initial images, such as here.
+**If your matrix contains potatoes, PCA will reveal some typical potatoes that
+can build back all of your original potatoes**. If your matrix contains
+ratings, well... Here we come.
 
 PCA on a (dense) rating matrix
 ==============================
@@ -222,16 +237,17 @@ R = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-Looks familiar? Instead of having faces in the rows, we now have users
-(represented as their ratings). Just like PCA gave us some typical guys before,
-it will now give us some **typical users**, or rather some **typical raters**.
+Looks familiar? Instead of having faces in the rows represented by pixel
+values, we now have users represented by their ratings. Just like PCA gave us
+some typical guys before, it will now give us some **typical users**, or rather
+some **typical raters**.
 
 Here again, in an ideal world, the concepts associated with the typical users
 would have a clear semantic meaning: we would obtain a typical *action movie
-fan*, a typical *romance movie fan*, a typical *Comedy fan*, etc. In practice,
-the semantics behind the typical users are not clearly defined, but for the
-sake of simplicity we will assume that they are (it doesn't change anything,
-this is just for intuition/explaination purposes).
+fan*, a typical *romance movie fan*, a typical *comedy fan*, etc. In practice,
+the semantic behind the typical users is not clearly defined, but for the sake
+of simplicity we will assume that they are (it doesn't change anything, this is
+just for intuition/explaination purposes).
 
 So here we are: each of our initial users (Alice, Bob...) can be expressed a
 combination of the typical users. For instance, Alice could be defined as a
@@ -287,5 +303,5 @@ $$
 
 And the same goes for all the other movies.
 
-We are now ready to dive into SVD.
+We are now ready to dive into SVD. TODO
 

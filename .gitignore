@@ -1,5 +1,8 @@
 _site/*
 *Thumbs.db
 Gemfile.lock
+.bundle/
+vendor/
+
 
 *.swp
