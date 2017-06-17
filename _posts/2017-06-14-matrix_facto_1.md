@@ -34,7 +34,7 @@ trying to over-simplify things, and avoiding dull statements. My hope is that
 this article is accessible to ML beginners, while still being insightful to the
 more experienced.
 
-**This article is divided into 4 parts**: in the first part (this one), we will
+**This article is divided into 4 parts**: in this first part, we will
 clearly define the problem we plan to address, and provide some insights about
 PCA. In the [second part]({% post_url 2017-06-15-matrix_facto_2%}), we will
 review SVD and see how it models the ratings. In the [third part]({% post_url 2017-06-16-matrix_facto_3%}), we will
@@ -125,8 +125,8 @@ X=
 \end{pmatrix}
 $$
 
-PCA, which stands for Principal Component Analysis, is an algorithm that will
-*reveal* 400 of these guys:
+**PCA, which stands for Principal Component Analysis, is an algorithm that will
+*reveal* 400 of these guys**:
 
 <img src="{{ site.url }}/assets/mf_post/faces/eigenface_0.jpg">
 <img src="{{ site.url }}/assets/mf_post/faces/eigenface_1.jpg">
@@ -144,7 +144,7 @@ Creepy, right ;)?
 We call these guys the **principal components** (hence the name of the
 technique), and when they represent faces such as here we call them the
 **eigenfaces**. Some really cool stuff can be done with eigenfaces such as
-[face recognition](https://en.wikipedia.org/wiki/Eigenface) , or [optimizing
+[face recognition](https://en.wikipedia.org/wiki/Eigenface), or [optimizing
 your tinder
 matches](http://crockpotveggies.com/2015/02/09/automating-tinder-with-eigenfaces.html)!
 The reason why they're called *eigenfaces* is because they are in fact the
@@ -168,7 +168,7 @@ faces.** Take a look at this (these are animated gifs, about 10s long):
 <img src="{{ site.url }}/assets/mf_post/faces/face_9/anim.gif">
 
 Here is what's going on. Each of the 400 original faces (i.e. each of the 400
-original vectors) can be expressed as a (linear) combination of the creepy
+original rows of the matrix) can be expressed as a (linear) combination of the creepy
 guys. That is, we can express the first original face (i.e. its pixel values)
 as a little bit of the first creepy guy,  plus a little bit of the second
 creepy guy, plus a little bit of third, etc. until the last creepy guy. The
@@ -210,7 +210,7 @@ second typical guy would represent a *typical glasses wearer*, and some
 other typical guys would represent concepts such as *smiley*, *sad looking*,
 *big nose*, stuff like that. And with these concepts, we could define a face as
 more or less *elder*, more or less *glassy*, more or less *smiling*,
-etc... In practice, the concepts that PCA reveals are really not that clear:
+etc. In practice, the concepts that PCA reveals are really not that clear:
 there is no clear semantic that we could associate with any of the
 creepy/typical guys that we obtained here. But the important fact remains:
 **each of the typical guys captures a specific aspect of the data**. We call
@@ -261,7 +261,7 @@ the semantic behind the typical users is not clearly defined, but for the sake
 of simplicity we will assume that they are (it doesn't change anything, this is
 just for intuition/explanation purposes).
 
-So here we are: each of our initial users (Alice, Bob...) can be expressed a
+So here we are: each of our initial users (Alice, Bob...) can be expressed as a
 combination of the typical users. For instance, Alice could be defined as a
 little bit of an action fan, a little bit of a comedy fan, a lot of a romance
 fan, etc. As for Bob, he could be more keen on action movies:

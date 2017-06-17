@@ -100,18 +100,23 @@ other teams.
 This optimization problem is not convex. That is, it will be very difficult to
 find the values of the vectors $p_u$ and $q_i$  that make this sum minimal (and
 the optimal solution may not even be unique). However, there are tons of
-techniques that can find approximate solutions. We will here use SGD
+techniques that can find approximate solutions. We will here use **SGD**
 (Stochastic Gradient Descent).
 
 Gradient descent is a very classical technique for finding the (sometimes
 local)  minimum of a function. If you have ever heard of back-propagation for
 training neural networks, well backprop is just a technique to compute
-gradients, which are later used for gradient descent. We won't detail too much
-how SGD works (there are tons of good resources on the web) but the general
-pitch is this. When you have a function $f(\theta) = \sum_k f_k(\theta)$ with
-parameter $\theta$ that you want to minimize (i.e. find the value of $\theta$
-such that $f(\theta)$ is as small as possible), SGD consists in the following
-steps:
+gradients, which are later used for gradient descent. SGD is one of the
+zillions variants of gradient descent. We won't detail too much how SGD works
+(there are tons of good resources on the web) but the general pitch is as
+follows.
+
+When you have a function $f$ with a parameter $\theta$ that looks like this:
+
+$$f(\theta) = \sum_k f_k(\theta),$$
+
+the SGD procedue minimizes $f$ (i.e. finds the value of $\theta$ such that
+$f(\theta)$ is as small as possible), with the following steps:
 
 1. Randomly initialize $\theta$
 2. for a given number of times, repeat:
@@ -131,7 +136,7 @@ $$f(p_*, q_*) = \sum_{r_{ui} \in R} (r_{ui} - p_u \cdot q_i)^2 =\sum_{r_{ui}
 where $f_{ui}$ is defined by $f_{ui}(p_u, q_i) = (r_{ui} - p_u \cdot
 q_i)^2$.
 
-So, in order to apply SGD, what we are looking for is the value of the
+So, **in order to apply SGD**, what we are looking for is the value of the
 derivative of $f_{ui}$ with respect to any $p_u$ and any $q_i$.
 
 - The derivative of $f_{ui}$ with respect to a given vector $p_u$ is given by:
@@ -145,7 +150,9 @@ derivative of $f_{ui}$ with respect to any $p_u$ and any $q_i$.
   $$\frac{\partial f_{ui}}{\partial q_i} = \frac{\partial}{\partial q_i}  (r_{ui} - p_u \cdot
   q_i)^2 = - 2 p_u (r_{ui} - p_u \cdot q_i)$$
 
-The SGD procedure then becomes:
+Don't be scared, honestly this is highschool-level calculus.
+
+**The SGD procedure then becomes**:
 
 1. Randomly initialize all vectors $p_u$ and $q_i$
 2. for a given number of times, repeat:
@@ -158,11 +165,12 @@ The SGD procedure then becomes:
          We avoided the multiplicative constant $2$ and merged it into the
          learning rate $\alpha$.
 
-Notice how in this algorithm the different factors in $p_u$ (and $q_i$) are all
+Notice how in this algorithm, the different factors in $p_u$ (and $q_i$) are all
 updated at the same time. Funk's original algorithm was a bit different: he
-actually trained the first factor, then the second, then the third, etc. A nice
-discussion about this can be found in [Aggarwal](http://charuaggarwal.net/)'s
-Textbook on recommender systems.
+actually trained the first factor, then the second, then the third, etc. This
+gave his algorithm a more SVDesque falvor. A nice discussion about this can be
+found in [Aggarwal](http://charuaggarwal.net/)'s Textbook on recommender
+systems.
 
 Once all the vectors $p_u$ and $q_i$ have been computed, we can estimate all
 the ratings we want using the formula:
@@ -221,11 +229,11 @@ $$
 $$
 
 But in fact, we don't need to use **all** the creepy guys to get a good
-approximation of each original faces. I actually lied to you: the gifs you see
-above only use the first 200 creepy guys! And you couldn't see the difference,
-right? To further illustrate this point, here is the reconstruction of the first
-original face, using from 0 to 400 creepy guys, each time adding 40 creepy
-guys into the reconstruction.
+approximation of each original face. I actually lied to you: the gifs you see
+above only use the first 200 creepy guys (instead of 400)! And you couldn't see
+the difference, could you? To further illustrate this point, here is the
+reconstruction of the first original face, using from 0 to 400 creepy guys,
+each time adding 40 creepy guys into the reconstruction.
 
 <img src="{{ site.url }}/assets/mf_post/faces/face_0/000.jpg">
 <img src="{{ site.url }}/assets/mf_post/faces/face_0/040.jpg">
@@ -294,4 +302,5 @@ to optimize on the known ratings, as we are doing with SGD ;)).
 We now have all it takes to write a matrix factorization algorithm in the [next
 (and last!) part]({% post_url 2017-06-17-matrix_facto_4%}) of this series.
 We'll do that in Python (obviously ;)), using the
-[Surprise](http://surpriselib.com) library.
+[Surprise](http://surpriselib.com) library. As you'll see, the algortihm is
+surprisingly simple to write, yet fairly efficient.

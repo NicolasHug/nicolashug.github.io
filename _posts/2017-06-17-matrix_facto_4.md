@@ -63,6 +63,7 @@ product between the vectors $p_u$ and $q_i$:
 
 {% highlight python %}
 def estimate(u, i):
+    '''Estimate rating of user u for item i.'''
     return np.dot(p[u], q[i])
 {% endhighlight %}
 
@@ -138,7 +139,7 @@ into the various topics covered so far:
   from the BellKor team ('*SVD*' corresponds to equation (5)). They are the
   guys who won the $1M of the Netflix Prize.
 - PCA can be used for a lot of fun stuff, not just messing around with creepy
-  faces.  Jonathon Shlens [Tutorial](https://arxiv.org/abs/1404.1100) provides
+  faces. Jonathon Shlens' [Tutorial](https://arxiv.org/abs/1404.1100) provides
   great insights on PCA as a diagonalization process, and its link to SVD. I
   haven't read this [Stanford course
   notes](http://theory.stanford.edu/~tim/s15/l/l9.pdf) in detail, but it looks
