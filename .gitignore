@@ -3,6 +3,7 @@ _site/*
 Gemfile.lock
 .bundle/
 vendor/
+.ipynb_checkpoints/
 
 
 *.swp

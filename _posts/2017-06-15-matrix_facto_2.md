@@ -1,19 +1,21 @@
 ---
 layout: post
-title: Understanding matrix factorization for recommendation&#58; the model behind SVD (part 2)
+title: Understanding matrix factorization for recommendation (part 2) - the model behind SVD
 categories: [general]
 tags: [matrix factorization, PCA, SVD, recommender systems]
-description:  TODO
+description:  Second part of our series on matrix factorization for recommendation&#58; links between PCA and SVD, and intuitive explanation on how SVD models a rating matrix.
 comments: true
 ---
 
-**Foreword**: this is the second part of a 3 parts article. Here are TODO and
-TODO.
+**Foreword**: this is the second part of a 4 parts series. Here are parts
+[1]({% post_url 2017-06-14-matrix_facto_1%}), [3]({% post_url
+2017-06-16-matrix_facto_3%}) and [4]({% post_url 2017-06-17-matrix_facto_4%}).
 
 SVD of a (dense) rating matrix
 ==============================
 
-Let's just recap a bit what we have seen in the first part TODO:
+Let's just recap a bit what we have seen in the [first part]({% post_url
+2017-06-14-matrix_facto_1%}):
 
 * PCA on the matrix $R$ will give us typical users. These typical users are of
   course represented as vectors (same length as the users, just like the creepy
@@ -161,4 +163,4 @@ rating for Toy Story will, however, be higher than that of Alice.
 We now have enough knowledge to apply SVD to a recommendation task. Until then,
 we assumed that the matrix $R$ was dense. In real scenario, it is obviously
 sparse (because our goal is precisely to make it dense). We will see how to do
-that in the last part of this article TODO.
+that in the [next part]({% post_url 2017-06-16-matrix_facto_3%}) of this series.
