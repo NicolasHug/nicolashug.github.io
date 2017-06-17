@@ -29,10 +29,10 @@ among which matrix factorization techniques stood out by their efficiency.
   Python. We will use this algorithm and evaluate its performances on real
   datasets.
 
-I tried to keep the math level of the article as low as possible, but without
-trying to over-simplify things, and avoiding dull statements. My hope is that
-this article is accessible to ML beginners, while still being insightful to the
-more experienced.
+I tried to keep the math level of the article as accessible as possible, but
+without trying to over-simplify things, and avoiding dull statements. My hope
+is that this article is accessible to ML beginners, while still being
+insightful to the more experienced.
 
 **This article is divided into 4 parts**: in this first part, we will
 clearly define the problem we plan to address, and provide some insights about
