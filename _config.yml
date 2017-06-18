@@ -14,7 +14,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: Nicolas Hug
+      title: The zillon'th almost-never-updated blog of the interwebs
 
 description: Me me me and mostly me
 
