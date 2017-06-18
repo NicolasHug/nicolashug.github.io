@@ -14,7 +14,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: The zillon'th almost-never-updated blog of the interwebs
+      title: The zillion'th almost-never-updated blog of the interwebs
 
 description: Me me me and mostly me
 
