@@ -94,7 +94,7 @@ Let's forget the recommendation problem for 2 minutes. We'll play around with
 the
 [Olivetti](http://scikit-learn.org/stable/datasets/olivetti_faces.html#olivetti-faces)
 dataset. It's a set of greyscale images of faces from 40 people, making up a
-total of 400 images. Here are the the first 10 people:
+total of 400 images. Here are the first 10 people:
 
 <img src="{{ site.url }}/assets/mf_post/faces/face_0/face.jpg"/>
 <img src="{{ site.url }}/assets/mf_post/faces/face_1/face.jpg"/>

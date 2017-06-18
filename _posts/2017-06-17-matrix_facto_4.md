@@ -140,10 +140,11 @@ into the various topics covered so far:
   guys who won the $1M of the Netflix Prize.
 - PCA can be used for a lot of fun stuff, not just messing around with creepy
   faces. Jonathon Shlens' [Tutorial](https://arxiv.org/abs/1404.1100) provides
-  great insights on PCA as a diagonalization process, and its link to SVD. I
-  haven't read this [Stanford course
-  notes](http://theory.stanford.edu/~tim/s15/l/l9.pdf) in detail, but it looks
-  also great (about low-rank approximation).
+  great insights on PCA as a diagonalization process, and its link to SVD.
+  Also, this [Stanford course
+  notes](http://theory.stanford.edu/~tim/s15/l/l9.pdf) covers some of the
+  topics we have presented (low-rank approximation, etc.) in a more
+  theory-oriented way.
 - For background on linear algebra, the only book worth reading is Gilbert
   Strang's [Introduction to LA](http://math.mit.edu/~gs/linearalgebra/). His
   [MIT
