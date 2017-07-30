@@ -1,0 +1,23 @@
+<hr />
+<p>layout: post
+title: zob
+tag:
+- matrix factorization
+- PCA
+- SVD
+category: blog
+author: nico
+—</p>
+
+<p><strong>Foreword</strong>: this is the first part of a 4 parts series. Here are parts <a href="{%
+post_url 2017-06-15-matrix_facto_2%}">2</a>, <a href="{% post_url
+2017-06-16-matrix_facto_3%}">3</a> and <a href="{% post_url 2017-06-17-matrix_facto_4%}">4</a>.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{matrix}
+a & blabla \\
+b & blablo
+\end{matrix} %]]></script>
+
+<p>About ten years ago, Netflix launched the <a href="https://en.wikipedia.org/wiki/Netflix_Prize">Netflix
+Prize</a>: an open contest where the</p>

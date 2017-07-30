@@ -1,10 +1,13 @@
 ---
 layout: post
 title: Understanding matrix factorization for recommendation (part 4) - algorithm implementation
-categories: [general]
-tags: [matrix factorization, PCA, SVD, recommender systems]
 description:  Last part of our series on matrix factorization for recommendation&#58; implementation of our algorithm, and further notes.
-comments: true
+tag:
+- matrix factorization
+- PCA
+- SVD
+category: blog
+author: nico
 ---
 
 **Foreword**: this is the last part of a 4 parts series. Here are parts

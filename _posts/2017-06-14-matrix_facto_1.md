@@ -1,10 +1,13 @@
 ---
 layout: post
 title: Understanding matrix factorization for recommendation (part 1) - preliminary insights on PCA
-categories: [general]
-tags: [matrix factorization, PCA, SVD, recommender systems]
 description:  First part of our series on matrix factorization for recommendation&#58; problem definition, and visual examples of what can PCA do.
-comments: true
+tag:
+- matrix factorization
+- PCA
+- SVD
+category: blog
+author: nico
 ---
 
 **Foreword**: this is the first part of a 4 parts series. Here are parts [2]({%
@@ -51,8 +54,7 @@ The problem we propose to address here is that of **rating prediction**. The
 data we have  is a rating history: ratings of users for items in the interval
 $[1, 5]$.  We can put all this data into a sparse matrix called $R$:
 
-$$
-R= \begin{pmatrix}
+$$R = \begin{pmatrix}
 1 & \color{#e74c3c}{?} & 2 & \color{#e74c3c}{?} & \color{#e74c3c}{?}\\
 \color{#e74c3c}{?} & \color{#e74c3c}{?} & \color{#e74c3c}{?} & \color{#e74c3c}{?} & 4\\
 2 & \color{#e74c3c}{?} & 4 & 5 & \color{#e74c3c}{?}\\
@@ -301,17 +303,6 @@ In this case, PCA will not reveal typical faces nor typical users, but of
 course **typical movies**. And here again, we will associate a semantic meaning
 behind each of the typical movies, and these typical movies can build back all
 of our original movies:
-
-$$
-\begin{align*}
-\text{Titanic} &= 20\% \color{#048BA8}{\text{ Action}} + 0\%
-\color{#048BA8}{\text{ Comedy}} +
-70\% \color{#048BA8}{\text{ Romance}} +\cdots\\
-\text{Toy Story} &= 30\% \color{#048BA8}{\text{ Action}} + 60\%
-\color{#048BA8}{\text{ Comedy}} + 0\%
-\color{#048BA8}{\text{ Romance}}  +\cdots\\
-\end{align*}
-$$
 
 And the same goes for all the other movies.
 

@@ -1,10 +1,13 @@
 ---
 layout: post
 title: Understanding matrix factorization for recommendation (part 2) - the model behind SVD
-categories: [general]
-tags: [matrix factorization, PCA, SVD, recommender systems]
 description:  Second part of our series on matrix factorization for recommendation&#58; links between PCA and SVD, and intuitive explanation on how SVD models a rating matrix.
-comments: true
+tag:
+- matrix factorization
+- PCA
+- SVD
+category: blog
+author: nico
 ---
 
 **Foreword**: this is the second part of a 4 parts series. Here are parts

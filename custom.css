@@ -1,0 +1,8 @@
+/* right justify text for article body */
+.post  {
+  text-align: justify;
+}
+
+.page {
+  text-align: justify;
+}
