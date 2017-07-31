@@ -30,6 +30,17 @@ theoretical understanding of machine learning and my programming abilities into
 a complete, useful and easy-to-use software, which I believe showcases my range
 of skills.
 
+The goal of my PhD was to study the empirical behaviour of analogical
+classifiers (somewhat related to k-NN classifiers) and to exhibit some of their
+theoretical properties. I was supervised by [Henri
+Prade](https://www.irit.fr/~Henri.Prade/), [Gilles
+Richard](https://www.irit.fr/~Gilles.Richard/), and Mathieu Serrurier. Two of
+my main publications so far was are:
+- [ECAI'16](http://www.ecai2016.org/): [Analogical Classifiers: A Theoretical
+  Perspective](http://ebooks.iospress.com/volumearticle/44815).
+- [IJCAI'17](http://ijcai-17.org): Analogy-preserving functions: A way to
+  extend Boolean samples (to be published).
+
 When I’m not working on my PhD or on my project Surprise, you may find me rock
 climbing or hiking, lost somewhere in the Pyrénées (French mountains)... I
 always enjoy any kind of outdoor physical activity, which is quite fortunate
