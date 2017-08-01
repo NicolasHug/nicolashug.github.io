@@ -114,8 +114,10 @@ around with [surprise](http://surpriselib.com), there are plenty of cool stuff
 in the [docs](http://surprise.readthedocs.io/en/stable/FAQ.html).
 
 If you found this series useful (or not), please let me know in the comments.
-Any mistakes are my own, and **any** kind of feedback would be greatly
+Any mistakes are my own, and **any** kind of criticism would be greatly
 appreciated!
+
+Thanks to Pierre Poulain for the valuable feedback!
 
 <a name="refs"></a>
 

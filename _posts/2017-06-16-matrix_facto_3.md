@@ -171,7 +171,7 @@ Don't be scared, honestly this is highschool-level calculus.
 Notice how in this algorithm, the different factors in $p_u$ (and $q_i$) are all
 updated at the same time. Funk's original algorithm was a bit different: he
 actually trained the first factor, then the second, then the third, etc. This
-gave his algorithm a more SVDesque falvor. A nice discussion about this can be
+gave his algorithm a more SVDesque flavor. A nice discussion about this can be
 found in [Aggarwal](http://charuaggarwal.net/)'s Textbook on recommender
 systems.
 
@@ -235,20 +235,20 @@ But in fact, we don't need to use **all** the creepy guys to get a good
 approximation of each original face. I actually lied to you: the gifs you see
 above only use the first 200 creepy guys (instead of 400)! And you couldn't see
 the difference, could you? To further illustrate this point, here is the
-reconstruction of the first original face, using from 0 to 400 creepy guys,
+reconstruction of the first original face, using from 1 to 400 creepy guys,
 each time adding 40 creepy guys into the reconstruction.
 
 <img src="{{ site.url }}/assets/mf_post/faces/face_0/000.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/040.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/080.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/120.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/160.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/200.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/240.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/280.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/320.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/360.jpg">
-<img src="{{ site.url }}/assets/mf_post/faces/face_0/400.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/039.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/079.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/119.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/159.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/199.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/239.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/279.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/319.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/359.jpg">
+<img src="{{ site.url }}/assets/mf_post/faces/face_0/399.jpg">
 
 The last picture is the perfect reconstruction, and as you can see even using
 only 80 creepy guys (third picture) is enough to recognize the original guy.
@@ -291,11 +291,11 @@ In our case, we will restrict the size of the $p_u$ and the $q_i$ to 10. That
 is, we will only consider 10 latent factors.
 
 You have the right to be skeptical about this, but we have in fact good
-guaranties about this approximation. A fantastic
-result about SVD is that when we're using only $k$ factors, we obtain the best
-low-rank approximation (understand low number of factors) of the original
-matrix. Details are a bit technical and outside the scope of this article
-(although very interesting), so I refer you to [this Stanford course
+guaranties about this approximation. A fantastic result about SVD (and PCA) is
+that when we're using only $k$ factors, we obtain the best low-rank
+approximation (understand low number of factors) of the original matrix.
+Details are a bit technical and outside the scope of this article (although
+very interesting), so I refer you to [this Stanford course
 notes](http://theory.stanford.edu/~tim/s15/l/l9.pdf) (Fact 4.2). (Quick note:
 in section 5 of the course notes, the author proposes a way to recover missing
 entries from SVD. This heuristic technique is the one that we first suggested

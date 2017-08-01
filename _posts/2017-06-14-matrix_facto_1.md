@@ -16,8 +16,8 @@ post_url 2017-06-15-matrix_facto_2%}), [3]({% post_url
 
 About ten years ago, Netflix launched the [Netflix
 Prize](https://en.wikipedia.org/wiki/Netflix_Prize): an open contest where the
-goal was to design state-of-the-art algorithms for predicting ratings. During
-3 years, research teams developed many different prediction algorithms,
+goal was to design state-of-the-art algorithms for predicting movie ratings.
+During 3 years, research teams developed many different prediction algorithms,
 among which matrix factorization techniques stood out by their efficiency.
 
 **The goal of this series of posts is twofold**:
@@ -74,15 +74,19 @@ $$
 
 Each row of the matrix corresponds to a given user, and each column corresponds
 to a given item. For instance here, Alice has rated the first item with a
-rating of $1$, and Charlie has rated the third item with a rating of $4$. The
-matrix $R$ is sparse (more than 99% of the entries are missing), and **our goal
-is to predict the missing entries**, i.e. predict the $\color{#e74c3c}{?}$.
+rating of $1$, and Charlie has rated the third item with a rating of $4$. In
+our case, we will consider that the items are **movies** and we will use the
+terms *item* and *movie* interchangeably.
 
-To predict ratings, we will **factorize** the matrix $R$. This matrix
-factorization is fundamentally linked to **SVD**, which stands for Singular
-Value Decomposition.  SVD is one of the highlights of linear algebra. It's a
-beautiful result. When people tell you that math sucks, show them what SVD can
-do.
+The matrix $R$ is sparse (more than 99% of the entries are missing), and **our
+goal is to predict the missing entries**, i.e. predict the
+$\color{#e74c3c}{?}$.
+
+There are many different techniques for rating prediction, and in our case we
+will **factorize** the matrix $R$. This matrix factorization is fundamentally
+linked to **SVD**, which stands for Singular Value Decomposition.  SVD is one
+of the highlights of linear algebra. It's a beautiful result. When people tell
+you that math sucks, show them what SVD can do.
 
 The aim of this article is to explain how SVD can be used for rating prediction
 purposes. But before we can dive into SVD in the [second part]({% post_url
@@ -154,6 +158,12 @@ eigenvectors of the covariance matrix of $X$ (but we will not detail this, see
 [the references]({% post_url 2017-06-17-matrix_facto_4%}/#refs) if you want to
 dive further into it).
 
+We obtain here 400 principal components because the original matrix $X$ has 400
+rows (or more precisely, because the rank of $X$ is 400). As you may have
+guessed, each of the principal component is in fact a vector that has the same
+dimension as the original faces, i.e. it has 64 x 64 = 4096  pixels.
+
+
 As far as we're concerned, we will call these guys the **creepy guys**. Now,
 one amazing thing about them is that **they can build back all of the original
 faces.** Take a look at this (these are animated gifs, about 10s long):
@@ -170,12 +180,12 @@ faces.** Take a look at this (these are animated gifs, about 10s long):
 <img src="{{ site.url }}/assets/mf_post/faces/face_9/anim.gif">
 
 Here is what's going on. Each of the 400 original faces (i.e. each of the 400
-original rows of the matrix) can be expressed as a (linear) combination of the creepy
-guys. That is, we can express the first original face (i.e. its pixel values)
-as a little bit of the first creepy guy,  plus a little bit of the second
-creepy guy, plus a little bit of third, etc. until the last creepy guy. The
-same goes for all of the other original faces: they can all be expressed as a
-little bit of each creepy guy. Mathematically, we write it this way:
+original rows of the matrix) can be expressed as a (linear) combination of the
+creepy guys. That is, we can express the first original face (i.e. its pixel
+values) as a little bit of the first creepy guy,  plus a little bit of the
+second creepy guy, plus a little bit of third, etc. until the last creepy guy.
+The same goes for all of the other original faces: they can all be expressed as
+a little bit of each creepy guy. Mathematically, we write it this way:
 
 $$
 \begin{align*}
@@ -202,16 +212,23 @@ gifs, I made a small
 [notebook](http://nbviewer.jupyter.org/github/NicolasHug/nicolashug.github.io/blob/master/assets/mf_post/creepy_guys.ipynb)
 for you.
 
+Note: there is nothing really special about the fact that the creepy guys can
+express all the original faces. We could have randomly chosen 400 independent
+vectors of 64 x 64 = 4096 pixels and still be able to reconstruct any face.
+What makes the creepy guys from PCA special is a very important result about
+dimensionality reduction, which we will discuss in [part 3]({% post_url
+2017-06-16-matrix_facto_3%}).
+
 <h4>Latent factors</h4>
 
-We've actually been kind of harsh towards the creepy guys. They're not
-creepy, they're **typical**. The goal of PCA is to reveal typical vectors: **each of the
-creepy/typical guy represents one specific aspect underlying the data**. In an
-ideal world, the first typical guy would represent (e.g.) a *typical elder person*, the
-second typical guy would represent a *typical glasses wearer*, and some
-other typical guys would represent concepts such as *smiley*, *sad looking*,
-*big nose*, stuff like that. And with these concepts, we could define a face as
-more or less *elder*, more or less *glassy*, more or less *smiling*,
+We've actually been kind of harsh towards the creepy guys. They're not creepy,
+they're **typical**. The goal of PCA is to reveal typical vectors: **each of
+the creepy/typical guy represents one specific aspect underlying the data**. In
+an ideal world, the first typical guy would represent (e.g.) a *typical elder
+person*, the second typical guy would represent a *typical glasses wearer*, and
+some other typical guys would represent concepts such as *smiley*, *sad
+looking*, *big nose*, stuff like that. And with these concepts, we could define
+a face as more or less *elder*, more or less *glassy*, more or less *smiling*,
 etc. In practice, the concepts that PCA reveals are really not that clear:
 there is no clear semantic that we could associate with any of the
 creepy/typical guys that we obtained here. But the important fact remains:
@@ -240,7 +257,7 @@ bare with me.
 
 <h4>PCA on the users</h4>
 
-Here is our rating matrix, where rows are users and columns are items:
+Here is our rating matrix, where rows are users and columns are movies:
 
 $$
 R = \begin{pmatrix}
@@ -284,10 +301,10 @@ And the same goes for all of the users, you get the idea. (In practice the
 coefficients are not necessarily percentages, but it's convenient for us to
 think of it this way).
 
-<h4>PCA on the items</h4>
+<h4>PCA on the movies</h4>
 
 What would happen if we transposed our rating matrix? Instead of having users
-in the rows, we would now have items (movies in our case), defined as their
+in the rows, we would now have movies, defined as their
 ratings:
 
 $$

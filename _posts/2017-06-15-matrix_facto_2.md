@@ -34,7 +34,7 @@ So what can SVD do for us?
 **SVD is PCA on $R$ and $R^T$, in one shot**.
 
 SVD will give you the two matrices $U$ **and** $M$, at the same time. You get
-the typical users **and** the typical items in one shot. SVD gives you $U$ and
+the typical users **and** the typical movies in one shot. SVD gives you $U$ and
 $M$ by **factorizing** $R$ into three matrices. Here is the **matrix
 factorization**:
 
