@@ -31,7 +31,7 @@ believe showcases my range of skills.
 
 The goal of my PhD was to study the empirical behaviour of analogical
 classifiers (somewhat related to k-NN classifiers) and to exhibit some of their
-theoretical properties. I was supervised by [Henri
+theoretical properties. My supervisors were [Henri
 Prade](https://www.irit.fr/~Henri.Prade/), [Gilles
 Richard](https://www.irit.fr/~Gilles.Richard/), and Mathieu Serrurier. Two of
 my main publications so far are:
@@ -41,8 +41,8 @@ my main publications so far are:
   extend Boolean samples (to be published).
 
 During my free time, you may find me rock climbing or hiking, lost somewhere in
-the Pyrénées (French mountains)... I always enjoy any kind of outdoor physical
-activity, which is quite fortunate given one of my other passions: food!
+the Pyrénées (French mountains)... I always enjoy any kind of outdoor activity,
+which is quite fortunate given one of my other passions: food!
 
 If you want to know more about me, please check out my <a
 href="{{site.base.url}}/assets/Nicolas_Hug_CV.pdf">Resume</a>!
