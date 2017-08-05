@@ -37,8 +37,8 @@ Richard](https://www.irit.fr/~Gilles.Richard/), and Mathieu Serrurier. Two of
 my main publications so far are:
 - [ECAI'16](http://www.ecai2016.org/): [Analogical Classifiers: A Theoretical
   Perspective](http://ebooks.iospress.com/volumearticle/44815).
-- [IJCAI'17](http://ijcai-17.org): Analogy-preserving functions: A way to
-  extend Boolean samples (to be published).
+- [IJCAI'17](http://ijcai-17.org): [Analogy-preserving functions: A way to
+  extend Boolean samples](https://www.ijcai.org/proceedings/2017/218).
 
 During my free time, you may find me rock climbing or hiking, lost somewhere in
 the Pyrénées (French mountains)... I always enjoy any kind of outdoor activity,
