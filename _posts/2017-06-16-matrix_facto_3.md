@@ -90,9 +90,11 @@ not give a crap. We **still** solve the same optimization problem:
 $$\min_{p_u, q_i}\sum_{r_{ui} \in R} (r_{ui} - p_u \cdot q_i)^2.$$
 
 The only difference is that this time, some ratings are missing, i.e. $R$ is
-incomplete. Also, we will forget about the orthogonality constraints, because
-even if they are useful for interpretation purpose, constraining the vectors
-usually does not help us to obtain more accurate predictions.
+incomplete. Note that we are not treating the missing entries as zeros: we are
+purely and simply ignoring them. Also, we will forget about the orthogonality
+constraints, because even if they are useful for interpretation purpose,
+constraining the vectors usually does not help us to obtain more accurate
+predictions.
 
 Thanks to his solution, Simon Funk ended up in the top 3 of the Netflix Prize
 for some time. His algorithm was heavily used, studied and improved by the
