@@ -155,7 +155,7 @@ your tinder
 matches](http://crockpotveggies.com/2015/02/09/automating-tinder-with-eigenfaces.html)!
 The reason why they're called *eigenfaces* is because they are in fact the
 eigenvectors of the covariance matrix of $X$ (but we will not detail this, see
-[the references]({% post_url 2017-06-17-matrix_facto_4%}/#refs) if you want to
+[the references]({% post_url 2017-06-17-matrix_facto_4%}#refs) if you want to
 dive further into it).
 
 We obtain here 400 principal components because the original matrix $X$ has 400
