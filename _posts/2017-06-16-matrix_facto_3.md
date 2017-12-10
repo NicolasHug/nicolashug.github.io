@@ -13,6 +13,8 @@ author: nico
 **Foreword**: this is the third part of a 4 parts series. Here are parts
 [1]({% post_url 2017-06-14-matrix_facto_1%}), [2]({% post_url
 2017-06-15-matrix_facto_2%}) and [4]({% post_url 2017-06-17-matrix_facto_4%}).
+This series is an extended version of a [talk I
+gave](https://www.youtube.com/watch?v=z0dx-YckFko&t=23m28s) at PyParis 17.
 
 SVD for recommendation
 ======================

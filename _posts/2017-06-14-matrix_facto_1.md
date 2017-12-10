@@ -13,6 +13,8 @@ author: nico
 **Foreword**: this is the first part of a 4 parts series. Here are parts [2]({%
 post_url 2017-06-15-matrix_facto_2%}), [3]({% post_url
 2017-06-16-matrix_facto_3%}) and [4]({% post_url 2017-06-17-matrix_facto_4%}).
+This series is an extended version of a [talk I
+gave](https://www.youtube.com/watch?v=z0dx-YckFko&t=23m28s) at PyParis 17.
 
 About ten years ago, Netflix launched the [Netflix
 Prize](https://en.wikipedia.org/wiki/Netflix_Prize): an open contest where the

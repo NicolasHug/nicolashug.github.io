@@ -13,6 +13,8 @@ author: nico
 **Foreword**: this is the last part of a 4 parts series. Here are parts
 [1]({% post_url 2017-06-14-matrix_facto_1%}), [2]({% post_url
 2017-06-15-matrix_facto_2%}) and [3]({% post_url 2017-06-16-matrix_facto_3%}).
+This series is an extended version of a [talk I
+gave](https://www.youtube.com/watch?v=z0dx-YckFko&t=23m28s) at PyParis 17.
 
 Algorithm implementation in Python
 ==================================

@@ -13,6 +13,8 @@ author: nico
 **Foreword**: this is the second part of a 4 parts series. Here are parts
 [1]({% post_url 2017-06-14-matrix_facto_1%}), [3]({% post_url
 2017-06-16-matrix_facto_3%}) and [4]({% post_url 2017-06-17-matrix_facto_4%}).
+This series is an extended version of a [talk I
+gave](https://www.youtube.com/watch?v=z0dx-YckFko&t=23m28s) at PyParis 17.
 
 SVD of a (dense) rating matrix
 ==============================
