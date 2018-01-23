@@ -6,9 +6,8 @@ layout: page
 <img style="border-radius:100%" alt="Nicolas Hug" src="{{ site.url }}/assets/images/nico.jpg">
 
 Hi, I'm Nicolas! I just got a PhD in Machine Learning from <a
-href="https://www.irit.fr/?lang=en">IRIT</a> lab, and I am now looking for a
-job. I currently live in France but I'm very flexible and mobile, willing to
-work abroad.
+href="https://www.irit.fr/?lang=en">IRIT</a> lab. I currently live in France
+but I'm very flexible and mobile, willing to work abroad.
 
 I'm also the main developer of <a href="http://surpriselib.com/">Surprise</a>,
 an open source Python library for building recommender systems.
