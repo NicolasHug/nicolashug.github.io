@@ -255,7 +255,7 @@ PCA on a (dense) rating matrix
 Until stated otherwise, we will consider for now that our rating matrix
 $R$ is completely dense, i.e.  there are no missing entries. All the ratings
 are known. This is of course not the case in real recommendation problems, but
-bare with me.
+bear with me.
 
 <h4>PCA on the users</h4>
 
