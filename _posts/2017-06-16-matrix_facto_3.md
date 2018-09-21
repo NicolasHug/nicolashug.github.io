@@ -35,7 +35,9 @@ R= \begin{pmatrix}
 \end{pmatrix}
 $$
 
-Remember that our goal is to predict the $\color{#ff2c2d}{?}$. 
+By *sparse*, we here mean "*with missing entries*", not "*containing a lot of
+zeros*". We don't replace the missing values with zeros. Remember that our goal
+is to predict the $\color{#ff2c2d}{?}$. 
 
 <h4>Ooooops</h4>
 
@@ -295,11 +297,11 @@ In our case, we will restrict the size of the $p_u$ and the $q_i$ to 10. That
 is, we will only consider 10 latent factors.
 
 You have the right to be skeptical about this, but we have in fact good
-guaranties about this approximation. A fantastic result about SVD (and PCA) is
-that when we're using only $k$ factors, we obtain the best low-rank
-approximation (understand low number of factors) of the original matrix.
-Details are a bit technical and outside the scope of this article (although
-very interesting), so I refer you to [this Stanford course
+theoretical guaranties about this approximation. A fantastic result about SVD
+(and PCA) is that when we're using only $k$ factors, we obtain the best
+low-rank approximation (understand low number of factors) of the original
+matrix.  Details are a bit technical and outside the scope of this article
+(although very interesting), so I refer you to [this Stanford course
 notes](http://theory.stanford.edu/~tim/s15/l/l9.pdf) (Fact 4.2). (Quick note:
 in section 5 of the course notes, the author proposes a way to recover missing
 entries from SVD. This heuristic technique is the one that we first suggested

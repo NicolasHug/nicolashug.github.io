@@ -53,7 +53,8 @@ and it gives you $M$, $\Sigma$ and $U$, such that:
 * The columns of $M$ are orthogonal, as well as the columns of $U$. I haven't
   mentioned this before, so here it is: the principal components are always
   orthogonal. This is actually an extremely important feature of PCA (and SVD),
-  but for our recommendation we actually don't care (we'll come to that).
+  but for our recommendation problem we actually don't care (we'll come to
+  that).
 * $\Sigma$ is a diagonal matrix (we'll also come to that).
 
 We can basically sum up all of the above points by this statements: *the columns
@@ -70,7 +71,7 @@ describe this modeling here.
 
 For the sake of simplicity, we will forget about the matrix $\Sigma$: it is a
 diagonal matrix, so it simply acts as a scaler on $M$ or $U^T$. Hence, we will
-pretend that we have *merged* into one of the two matrices. Our matrix
+pretend that we have *merged* it into one of the two matrices. Our matrix
 factorization simply becomes:
 
 $$R = MU^T$$
