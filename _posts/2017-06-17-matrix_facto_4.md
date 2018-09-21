@@ -152,9 +152,8 @@ into the various topics covered so far:
   notes](http://theory.stanford.edu/~tim/s15/l/l9.pdf) covers some of the
   topics we have presented (low-rank approximation, etc.) in a more
   theory-oriented way.
-- For background on linear algebra, the only book worth reading is Gilbert
-  Strang's [Introduction to LA](http://math.mit.edu/~gs/linearalgebra/). His
-  [MIT
+- For background on linear algebra, Gilbert Strang is your guy:
+  [Introduction to LA](http://math.mit.edu/~gs/linearalgebra/). His [MIT
   Course](https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/index.htm)
   is also pure gold.
 - And of course, [Surprise](http://surpriselib.com) is a great library for
