@@ -21,7 +21,7 @@ of my PhD was to study the empirical behaviour of analogical classifiers
 (somewhat related to k-NN classifiers) and to exhibit some of their theoretical
 properties. My supervisors were [Henri
 Prade](https://www.irit.fr/~Henri.Prade/), [Gilles
-Richard](https://www.irit.fr/~Gilles.Richard/), and Mathieu Serrurier. Two of
+Richard](https://www.irit.fr/~Gilles.Richard/), and Mathieu Serrurier. Some of
 my main publications so far are:
 - [ECAI'16](http://www.ecai2016.org/): [Analogical Classifiers: A Theoretical
   Perspective](http://ebooks.iospress.com/volumearticle/44815).
