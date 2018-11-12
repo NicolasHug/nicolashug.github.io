@@ -15,11 +15,11 @@ York. My work is mainly focused on contributing to the
 I developed (and now maintain) [Surprise](http://surpriselib.com), a Python
 library to build and analyze recommender systems.
 
-I got my PhD in Machine Learning from <a
-href="https://www.irit.fr/?lang=en">IRIT</a> lab in Toulouse, France.  The goal
-of my PhD was to study the empirical behaviour of analogical classifiers
-(somewhat related to k-NN classifiers) and to exhibit some of their theoretical
-properties. My supervisors were [Henri
+I got my PhD ([pdf link](http://nicolas-hug.com/assets/phd.pdf)) in Machine
+Learning from <a href="https://www.irit.fr/?lang=en">IRIT</a> lab in Toulouse,
+France.  The goal of my PhD was to study the empirical behaviour of analogical
+classifiers (somewhat related to k-NN classifiers) and to exhibit some of their
+theoretical properties. My supervisors were [Henri
 Prade](https://www.irit.fr/~Henri.Prade/), [Gilles
 Richard](https://www.irit.fr/~Gilles.Richard/), and Mathieu Serrurier. Some of
 my main publications so far are:
