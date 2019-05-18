@@ -79,5 +79,5 @@ show-author: true
 # do you want some animations?
 animation: true
 
-gems:
+plugins:
   - jekyll-seo-tag
