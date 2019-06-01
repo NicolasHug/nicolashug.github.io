@@ -3,7 +3,7 @@ permalink: /:categories/:title
 
 # main text of home
 name: Nicolas Hug
-bio: Machine learning Phd, software engineer
+bio: Postdoc at Columbia University
 
 # twitter summary info
 # description: A blog about technology and stuff related
@@ -40,7 +40,7 @@ email: contact@nicolas-hug.com
 authors:
     nico:
         name: Nicolas Hug
-        bio: Machine Learning PhD, software engineer
+        bio: Postdoc at Columbia University
         external-image: false
         picture: assets/images/nico.jpg
         twitter: hug_nicolas
