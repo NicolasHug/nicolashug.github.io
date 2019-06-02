@@ -15,7 +15,7 @@ picture: assets/images/nico_avatar.png
 
 # If you want to include your resume, set to true
 # and specify source (external or local).
-resume: true
+resume: false
 resume-external: false
 resume-url: assets/Nicolas_Hug_CV.pdf
 
@@ -62,7 +62,7 @@ about: true
 blog: true
 
 # do you want to show the "read time" of the posts?
-read-time: true
+read-time: false
 
 # do you want to show the "tags" inside the posts?
 show-tags: true

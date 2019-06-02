@@ -1,10 +1,9 @@
 ---
 layout: post
 title: Understanding Gradient Boosting as a gradient descent
-description: TODO
+description: Understanding Gradient Boosting as a gradient descent
 tag:
 - Gradient boosting
-- scikit-learn
 category: blog
 author: nico
 ---
@@ -39,24 +38,29 @@ instead performed in the **parameter space**. Let's review that briefly.
 ## Gradient descent in parameter space: linear regression
 
 We'll briefly describe a typical least squares linear regression estimator,
-optimized with gradient descent:
+optimized with gradient descent.
 
-1. define the model: $$\hat{y}_i = f(\mathbf{x}_i) =
-   \mathbf{x}_i^T\mathbf{\theta}.$$ Here, $\mathbf{\theta}$ is the parameter
-   that we want to estimate.
-2. define a loss: $$\mathcal{L} = \sum_i (y_i - \hat{y}_i)^2 = \sum_i (y_i - \mathbf{x}_i^T\mathbf{\theta})^2$$
-3. Start with a random $\mathbf{\theta}$ and iteratively update it[^1]:
+Let's consider the least squares loss $$\mathcal{L} = \sum_i (y_i -
+\hat{y}_i)^2 = \sum_i (y_i - \mathbf{x}_i^T\mathbf{\theta})^2$$, where the
+predictions $\hat{y}_i$ are defined as:
 
-   $$\mathbf{\theta}^{(m + 1)} = \mathbf{\theta}^{(m)} - \text{learning_rate} *
-   \frac{\partial \mathcal{L}}{\partial \mathbf{\theta}^{(m)}}.$$
+$$\hat{y}_i = \mathbf{x}_i^T\mathbf{\theta}.$$
 
-   In code:
-   ```python
-   theta = np.zeros(shape=n_features)  # or some actual random init
-   for m in range(n_iterations):  # or until another convergence criterion
-       neg_gradient = -compute_gradient_of_loss(y, X, theta)
-       theta += learning_rate * neg_gradient
-   ```
+In order to optimize the loss with respect to $\mathbf{\theta}$, a gradient
+descent consists in starting with a random $\mathbf{\theta}$ and iteratively
+updating it[^1]:
+
+$$\mathbf{\theta}^{(m + 1)} = \mathbf{\theta}^{(m)} - \text{learning_rate} *
+\frac{\partial \mathcal{L}}{\partial \mathbf{\theta}^{(m)}}.$$
+
+In code:
+
+```python
+theta = np.zeros(shape=n_features)  # or some actual random init
+for m in range(n_iterations):  # or until another convergence criterion
+    negative_gradient = -compute_gradient_of_loss(y, X, theta)
+    theta += learning_rate * negative_gradient
+```
 
 [^1]:
     A more correct notation for the derivative is $\[\frac{\partial
@@ -78,8 +82,12 @@ There are a few important things to note:
 
 ## Wait, what?
 
-So, the general purpose of gradient descent is to minimize a function,
-with respect to one of its parameters (any parameter, BTW).
+Computing the gradient of the loss with respect to the predictions
+$\hat{y}_i$ is something that I found quite confusing at first, but it
+actually makes a lot of sense. Consider the following:
+
+The general purpose of gradient descent is to minimize a function, with
+respect to one of its parameters (any parameter, BTW).
 
 In linear regression, the function that we minimize is the loss $\mathcal{L}$,
 and the parameter that we choose is $\mathbf{\theta}$.
@@ -92,8 +100,8 @@ These predictions $\hat{\mathbf{y}} = (\hat{y_1}, \cdots, \hat{y_n})^T$ are
 actually just a vector in $\mathcal{R}^n$, just like $\mathbf{\theta}$ is a
 vector in $\mathcal{R}^d$.
 
-So there's nothing keeping us from minimizing the loss with respect to the
-predictions.
+So, conceptually, there is nothing keeping us from minimizing the loss with
+respect to the predictions.
 
 Let's try that.
 
@@ -101,18 +109,20 @@ Let's try that.
 ## Minimizing the loss with respect to the predictions
 
 Just like we started with a random $\mathbf{\theta}$ before, we'll now start
-with random predictions. The update rule becomes[^2]:
+with random predictions. The update rule becomes[^2], for all training samples $i$:
 
-$$\hat{\mathbf{y}}^{(m + 1)} = \hat{\mathbf{y}}^{(m)} - \text{learning_rate} *
-   \frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}^{(m)}}.$$
+$$\hat{y}_i^{(m + 1)} = \hat{y_i}^{(m)} - \text{learning_rate} *
+   \frac{\partial \mathcal{L}}{\partial \hat{y_i}^{(m)}}.$$
 
 [^2]: Same remark as above.
 
-We literally just replaced $\mathbf{\theta}$ by $\hat{\mathbf{y}}$ here.
+We literally just replaced $\mathbf{\theta}$ by the $\hat{y_i}$ here.
 Taking the least squares loss again, we have:
 
-$$\frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}} (\hat{\mathbf{y}})=
--2 (\mathbf{y} - \hat{\mathbf{y}}).$$
+$$\frac{\partial \mathcal{L}}{\partial \hat{y_i}} =
+\frac{\partial}{\partial \hat{y_i}}
+(y_i - \hat{y_i})^2 =
+-2 (y_i - \hat{y_i}).$$
 
 Now, let's actually code this gradient descent, and verify that the loss is
 indeed minimized. There's a bit of boilerplate but the code is deceptively
@@ -141,6 +151,8 @@ X_train, y_true_train = make_regression(n_samples=n_samples, n_features=n_featur
 y_pred_train = np.zeros(shape=n_samples)
 loss_values = []
 
+# Gradient descent on the predictions. Note how similar that is to the
+# gradient descent on theta above.
 for m in range(n_iterations):
     negative_gradient = -compute_gradient_of_loss(y_true_train, y_pred_train)
     y_pred_train += learning_rate * negative_gradient
@@ -149,7 +161,7 @@ for m in range(n_iterations):
 
 plt.plot(np.arange(n_iterations) + 1, loss_values, 'o')
 plt.xlabel('iteration', fontsize=20)
-plt.ylabel('loss', fontsize=20)
+plt.ylabel('training loss', fontsize=20)
 plt.show()
 ```
 
@@ -161,7 +173,7 @@ Looks like it works! The loss decreases and is very close to 0 after a few
 iterations. That means that we are able to predict the values in the training
 set with almost perfect accuracy.
 
-**Of course, this is completely useless in practice :)**
+**Of course, this is pretty much useless in practice :)**
 
 Ultimately, what we want to do is predict values for unseen samples, not for
 our training samples. With the code snippet from above, we have no way of
@@ -213,7 +225,7 @@ formula:
 
 $$\hat{y}_i = \sum_{m = 1}^{\text{n_iter}} h_m(\mathbf{x}_i).$$
 
-That's our gradient descent in a functional space.
+And that's our gradient descent in a functional space.
 
 
 ## Wrapping up
@@ -229,50 +241,10 @@ There are 2 main things going on:
    estimator to predict the gradient descent step. Saving these base estimators
    in memory is what enables us to output predictions for any future sample.
 
-TODO: notebook
-
-## A few more things
-
-
-
-#### Classification
-
-What we described so far was gradient boosting for regression. In fact,
-**training a GBDT for classification is exactly the same**. The only thing that
-changes is the loss function.
-
-It is quite analoguous to the linear regression / logistic regression thing.
-
-For binary classification, using the binary cross-entropy loss (or log
-loss, or logistic loss, or negative log-likelihood), we only need to adapt the
-`compute_gradient_of_loss()` function: instead of returning the gradient of
-the least squares loss, we just return the gradient of the cross-entropy
-loss.
-
-With this loss, the trees do not predict a probability, they predict a
-log-odds ratio (just like in logistic regression). To get the probability
-that the sample belongs to the positive class, we just need to apply the
-logistic sigmoid function to the raw values coming from the trees. There's
-an implementation in the Notebook TODO too.
-
-Multiclass classification is a little bit more involved and out of scope
-here, but you can refer to [these
-notes](https://github.com/ogrisel/pygbm/blob/master/pygbm/multiclass_notes)
-I wrote when developing `pygbm`.
-
-#### Second order derivatives
-
-Some losses, like the log-loss, have non-constant second order derivatives
-(abusively called *hessians*). In that case, instead of performing a
-gradient descent step, it is more efficient to perform a [Newton-Raphson
-step](https://en.wikipedia.org/wiki/Newton%27s_method) (concretely, we
-devide by the hessians).
-
-This corresponds to equation (5) of the [XGBoost
-paper](https://arxiv.org/pdf/1603.02754).
-
-
-#### Line search
+If you want to have fun, I made a
+[notebook](https://nbviewer.jupyter.org/github/NicolasHug/nicolashug.github.io/blob/master/assets/gradient_boosting_descent/GradientBoosting.ipynb)
+with a pretty simple implementation of GBDTs for regression and
+classification.
 
 ----
 
@@ -280,6 +252,11 @@ I hope you now understand why Gradient Boosting can be considered as some form
 of gradient descent.
 
 I would greatly appreciate any feedback you may have!
+
+For a follow-up on how GBDTs for classification work, and other details,
+check out this [follow-up post]({% post_url
+2019-06-02-around_gradient_boosting%}).
+
 
 ## Resources
 
@@ -294,3 +271,11 @@ Gradient Boosting Machine* [(pdf
 link)](https://statweb.stanford.edu/~jhf/ftp/trebst.pdf) by Jerome Friedman
 is of course a reference. It's quite heavy on math, but I hope this post will
 help you get through it.
+
+[The Elements of Statistical
+Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/) by Hastie,
+Tibshirani and Friedman, also have a nice coverage of gradient boosting (on the
+mathy side too).
+
+<!-- leave this here for better footnotes rendering -->
+----
