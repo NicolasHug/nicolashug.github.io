@@ -12,9 +12,12 @@ There are a lot of resources online about gradient boosting, but not many of
 them explain how gradient boosting relates to gradient descent. This post is
 an attempt to explain gradient boosting as a (kinda weird) gradient descent.
 
-I'll assume zero previous knowledge of gradient boosting here, but you might
-want to review gradient descent if you're not familiar with it. Let's get
-started!
+I'll assume zero previous knowledge of gradient boosting here, but this post
+requires a minimal working knowledge of gradient descent.
+
+Let's get started!
+
+----
 
 For a given sample $\mathbf{x}_i$, a gradient boosting regressor yields
 predictions with the following form:
@@ -227,6 +230,10 @@ $$\hat{y}_i = \sum_{m = 1}^{\text{n_iter}} h_m(\mathbf{x}_i).$$
 
 And that's our gradient descent in a functional space.
 
+Instead of using gradient descent to estimate a parameter (a vector in a
+finite-dimensional space), we used gradient descent to estimate a
+**function**: a vector in an infinite dimensional space.
+
 
 ## Wrapping up
 
@@ -237,9 +244,10 @@ There are 2 main things going on:
    with respect to the predictions. There is no notion of *parametrized
    model* anymore, but we're still able to minimize our loss on the training
    samples!
-2. At each iteration of the gradient descent procedure, we train a base
-   estimator to predict the gradient descent step. Saving these base estimators
-   in memory is what enables us to output predictions for any future sample.
+2. At each iteration of the gradient boosting procedure, we train a base
+   estimator to predict the gradient descent step. Saving these base
+   estimators in memory is what enables us to output predictions for any
+   future sample.
 
 If you want to have fun, I made a
 [notebook](https://nbviewer.jupyter.org/github/NicolasHug/nicolashug.github.io/blob/master/assets/gradient_boosting_descent/GradientBoosting.ipynb)
