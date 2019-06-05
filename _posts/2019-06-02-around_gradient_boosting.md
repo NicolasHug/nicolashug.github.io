@@ -55,7 +55,7 @@ iteration (like in binary classification and regression), we build `K` trees
 per iteration, where `K` is the number of classes.
 
 Each tree is a kind of OVR tree, but trees are not completely independent
-because they influence each others when we compute the gradients (and the
+because they influence each other when we compute the gradients (and the
 hessians).
 
 Concretely, the `K` trees of the `i`th iteration do not depend on each
@@ -75,7 +75,7 @@ the trees of the `k`th class. The predicted class is then the argmax of the
 Decision trees (and thus GBDTs), have an elegant native support for missing
 values.
 
-It's deciptively simple, but this section requires a working knowledge of
+It's deceptively simple, but this section requires a working knowledge of
 how decision trees are trained.
 
 When considering a potential split point (identified by a feature index and
@@ -133,7 +133,7 @@ We still build the trees by fitting the gradients (just like with
 any other loss), **but once a tree is trained, we update its predicted
 values with the median of the samples in each leave**.
 
-Remember how gradient boosting is analoguous to a gradient descent? Well
+Remember how gradient boosting is analoguous to gradient descent? Well
 updating the tree values (again, only **after** the tree is trained)
 corresponds to the *line search* procedure of gradient descent.
 

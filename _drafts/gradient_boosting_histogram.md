@@ -129,7 +129,7 @@ index histograms.
 ## Histograms
 
 ```python
-def find_best_split(sum_gradients_node, histograms):
+def find_best_split_point(sum_gradients_node, histograms):
     for feature in range(n_features):
         # histogram contains the sum of gradients of the samples in each bin
         historam = histograms[feature_idx]
