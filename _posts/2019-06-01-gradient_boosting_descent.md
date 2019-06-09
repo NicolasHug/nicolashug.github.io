@@ -30,6 +30,8 @@ base estimator is almost always a decision tree, I'll abusively use the term
 *GBDT* (Gradient Boosting Decision Trees) to refer to gradient boosting in
 general.
 
+Each of the base estimators $h_m$ isn't trying to predict the target $y_i$.
+Instead, the base estimators are trying to predict gradients.
 **This sum $\sum_{m = 1}^{\text{n_iter}} h_m(\mathbf{x}_i)$ is actually
 performing a gradient descent.**
 

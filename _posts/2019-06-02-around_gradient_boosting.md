@@ -11,8 +11,8 @@ author: nico
 This post is a sort of follow-up to this [introduction to gradient boosting
 as a gradient descent]({% post_url 2019-06-01-gradient_boosting_descent%}).
 
-It's a collection of notes about how gradient boosting works in practice.
-We will cover:
+It's a collection of notes about how gradient boosting works in practice, and
+how to implement a GBDT estimator. We will cover:
 
 - how to handle binary and multiclass classification tasks
 - how to support missing values
