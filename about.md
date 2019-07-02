@@ -7,7 +7,7 @@ layout: page
 
 Hi, I'm Nicolas!
 
-I'm a postdoctoral researcher at the [Data Science
+I'm an associate research scientist at the [Data Science
 Institute](https://datascience.columbia.edu/) at Columbia University in New
 York, in [Andreas Müller](https://amueller.github.io/)'s team.
 
