@@ -6,3 +6,8 @@
 .page {
   text-align: justify;
 }
+
+/* higher fontsize for `code in backquotes` and code blocks */
+code {
+  font-size: 18px;
+}

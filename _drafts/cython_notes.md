@@ -16,10 +16,10 @@ about avoiding Python interactions, memory views, the GIL and other fun
 stuff.
 
 This is neither a tutorial, nor an introduction to Cython. This is rather a
-list things I wish I knew before writing a few thousands lines of Cython
-code. I wish it will be useful to others!
+list of things I wish I knew before writing a few thousands lines of Cython
+code. I hope it can be useful to others!
 
-# My workflow
+# Workflow
 
 My Cython workflow is pretty basic. Write code, compile, fix compilation
 errors, then run the tests... Nothing new here. There are a few
@@ -32,7 +32,7 @@ strongly suggest to:
 
 About debugging: there is, AFAIK, no debugger for Cython. You can of course
 still use a debugger for the generated C-code, but that's not really
-convenient. Personally, I use the good old ``print`` statements with
+convenient. Personally, I use the good old ``print()`` statements with
 extensive unit tests. It can become pretty annoying when you're debugging a
 ``nogil`` section where ``print()`` is forbidden though.
 
@@ -42,7 +42,7 @@ Cython generates C code that conceptually operates in 2 different modes:
 either in "Python mode" or in "pure C mode".
 
 Python mode is when the code manipulates Python objects, through the
-[Python/C API](https://docs.python.org/2/c-api/index.html): for example when
+[Python/C API](https://docs.python.org/3/c-api/intro.html): for example when
 you are using a dict, or a numpy array. A call to this Python/C API is
 called a *Python interaction*.
 
@@ -54,14 +54,14 @@ instead (see below).
 My simplistic proxy is that Python interaction = slow = bad, while pure C
 mode = fast = good. When writing Cython, you want to avoid Python
 interactions as much as possible, especially deep inside for loops. The
-command ``cython -a file.pyx`` will generate a html file of the generated C
+command ``cython -a file.pyx`` will output a html file of the generated C
 code, where each line has a different shade of yellow: more yellow means
 more Python interactions.
 
 When I write Cython code, I always use ``cython -a`` on every file. My goal
 is that all the file is white (i.e. no interaction), although interactions
-are unavoidable in some places (typically when arguments are passed in, or
-when returning Python objects).
+are unavoidable in some places:typically when arguments are passed in, or
+when returning Python objects.
 
 Some tips to avoid Python interactions:
 
@@ -77,34 +77,31 @@ Some tips to avoid Python interactions:
   tips blindly though**. In some cases it will make your code faster, but
   sometimes it won't. In the end, always let your benchmarks decide.
 
-
-# Using Memory views and numpy arrays
-
-- memory aligment
-- how to use mem views with custom dtype
-
 # Multi-threading and the GIL
 
-The GIL is this annoying thing that prevents programs run with `CPython` to
-do multi-threaded parallelism. You can do multi-processing (e.g. with
+The [GIL](https://wiki.python.org/moin/GlobalInterpreterLock) is this
+annoying thing that prevents programs run with `CPython` to do
+multi-threaded parallelism. You can do multi-processing (e.g. with
 [joblib](https://joblib.readthedocs.io/en/latest/)), but unless the GIL is
-"released" (the GIL is a *lock*), multi-threading isn't possible.
+"released", multi-threading isn't possible.
 
 **Cython allows you to release the GIL**. That means that you can do
 multi-threading in at least 2 ways:
 
 - Directly in Cython, using OpenMP with
-  [prange](https://cython.readthedocs.io/en/latest/src/userguide/parallelism.html)).
+  [prange](https://cython.readthedocs.io/en/latest/src/userguide/parallelism.html).
 - Using e.g. `joblib` with a multi-threading backend (the parts of your code
   that will be parallelized are the parts the release the GIL)
 
-To release the GIL in cython, you just need to use the `with nogil:`
+We use both in scikit-learn.
+
+To release the GIL in Cython, you just need to use the `with nogil:`
 context manager (you can also do that directly when using ``prange``).
 
 Your code inside of a `nogil` statement cannot have any Python interaction.
-Any variable you use will have to be `cdef`ed, and you won't be allowed to
-use numpy arrays: use views instead! If you call a function, it needs to be
-labeled as a `nogil` function, like so:
+Any variable you use will have to be `cdef`'ed, and you won't be allowed to
+use numpy arrays since these are objects: use views instead! If you call a
+function, it needs to be labeled as a `nogil` function, like so:
 
 ```python
 cdef void my_func(int [:] some_view) nogil:
@@ -119,10 +116,10 @@ As a result this function must not have any kind of Python interaction.
 You are still allowed to call the function **with** the GIL, though.
 
 Another thing that wasn't clear for me at first: it is perfectly OK to
-release the GIL inside of a `def` function that has a lot of Python
-interactions, as long as the Python interactions happen when the GIL is
-held. That makes the interface of your functions simpler. For example, this
-is perfectly possible:
+release the GIL inside of a `def` function that has some Python
+interactions, as long as the Python interactions happen outside of the
+`nogil` block. In other words, no need to overthink your functions
+interfaces. For example, this is perfectly possible:
 
 ```python
 
@@ -145,7 +142,7 @@ def f(array):  # Take Python object as input
 
     return array  # return a Python object
 
-# Then from Python:
+# Then from Python, in a .py file:
 out = f(np.arange(10))
 ```
 
@@ -153,18 +150,90 @@ Finally: releasing and aquiring the GIL takes time. You don't want to do that
 deep inside nested for loops. It is instead better to write big chunks of
 nogil code.
 
-# the directives at the top
+# Using numpy arrays and memory views
 
-# Final
+In scikit-learn we rely on numpy arrays for almost everything. Cython supports
+numpy arrays but since these are Python objects, we can't manipulate them
+without the GIL.
 
-Cython is an amazing tool, and the Python data-science ecosystem wouldn't be
-what it is without it. It can however be a bit magical sometimes, and even
-with experience it is still hard to make sure that a
+In the past, the workaround was to use pointers on the data, but that can
+get ugly very quickly, especially when you need to care about the memory
+alignment of 2D arrays ([C vs
+Fortran](https://stackoverflow.com/questions/26998223/what-is-the-difference-between-contiguous-and-non-contiguous-arrays)).
 
-- some very magical stuff can happen. See issue about 2d arrays.
+Cython now supports memory views, which can be used without the GIL. A view
+is a light struct that basically contains a pointer to the raw data, and
+info about the type, memory alignment, etc.
 
-I found the *Cython* book by Kurt W. Smith to be very clear and pleasant to
-read.
-+ doc + papers
+The interaction between numpy arrays and views is pretty flexible. In
+particular, the following patterns are perfectly acceptable:
+
+```python
+# Declare an argument as a view, and pass in an array
+def f(int [:] my_view):
+    # ...
+
+f(np.arange(10))
+```
+
+```python
+# Take an array as input, and locally map it to a view
+def f(array):
+
+    cdef int [:] my_view = array  # bind array to a view
+
+    # You can now manipulate the view, possibly without the GIL
+```
+
+```python
+# Allocate an array inside of a function, and manipulate it with a view.
+def f():
+
+    cdef int [:] my_view = np.arange(10)
+
+    # You can now manipulate the view, possibly without the GIL
+
+    return np.asarray(my_view)
+```
+
+I find myself not using pointers at all, unless I really need to `malloc()`
+and then `free()` something in a `nogil` section.
+
+### Other tips about memory views:
+
+You can manipulate views over numpy structured array (i.e. arrays with a
+complex dtype): see [this PR](https://github.com/cython/cython/pull/2813),
+which isn't merged at the time of writing.
+
+Since you're writing C-like code, in general you'll want to disable the
+bounds checks and the wraparound to make your code faster (see the docs).
+
+If you know whether your array is C-aligned or Fortran-aligned, definitely
+let Cython know. Else, Cython will generate general code that can work with
+arbitrary alignment, which is less optimized:
+
+```python
+cdef int [:, ::1] my_view  # C aligned (contiguous on the last dim)
+cdef int [::1, :] my_view  # Fortran aligned (contiguous on the 1st dim)
+```
+
+# Last remarks
+
+Cython is an amazing tool, and the whole Python data-science ecosystem owes
+Cython a lot. Scikit-learn, Scipy and pandas heavily rely on it.
+
+Much like [Numba](https://numba.pydata.org/), it can however be a bit (too)
+magical sometimes, and even the smallest change can have a huge impact on
+the performance of your code, sometimes for obscure reasons. I can't stress
+this enough: **always benchmark your code.**
+
+The [Cython documentation](https://cython.readthedocs.io/en/latest/) is full
+of great tips, though with time the organization is becoming a bit confusing
+(with e.g. some redundancy between the User Guide and the tutorials). This
+[Scipy paper](http://conference.scipy.org/proceedings/SciPy2009/paper_1/)
+also has some useful info that are not all covered in the docs.
+
+I also found the *Cython* book by Kurt W. Smith to be very clear and useful.
+It covers most of the topics from the docs in a very accessible way.
 
 ----
