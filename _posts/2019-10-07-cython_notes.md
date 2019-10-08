@@ -71,7 +71,7 @@ Some tips to avoid Python interactions:
 - A good way to make sure that you're not risking any interaction is to write
   code within a ``with nogil`` context manager (see below).
 - For some reason, declaring a variable locally in a function may make some
-  interactions disapear. Typically, I noticed that using a local variable as
+  interactions disappear. Typically, I noticed that using a local variable as
   an alias to the attribute of a ``cdef``'ed class will remove Python
   interactions (``cdef int local_var = self.var``). **Don't follow these
   tips blindly though**. In some cases it will make your code faster, but
