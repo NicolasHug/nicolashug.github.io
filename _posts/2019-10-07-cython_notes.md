@@ -196,6 +196,10 @@ def f():
     return np.asarray(my_view)
 ```
 
+That might seem obvious, but views do not support the numpy array API: You
+cannot do things like `my_view.mean()`. You can do `np.mean(my_view)`, but not
+without the GIL.
+
 I find myself not using pointers at all, unless I really need to `malloc()`
 and then `free()` something in a `nogil` section.
 
