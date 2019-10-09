@@ -12,8 +12,8 @@ Institute](https://datascience.columbia.edu/) at Columbia University in New
 York, in [Andreas Müller](https://amueller.github.io/)'s team.
 
 My work is mainly focused on maintaining and contributing to the
-[scikit-learn](http://scikit-learn.org/) library. I try to build software
-for democratizing machine learning.
+[scikit-learn](http://scikit-learn.org/) library. My goal is to build open
+source and high-quality software for democratizing machine learning.
 
 During my PhD ([link](http://nicolas-hug.com/assets/phd.pdf)) I developed
 (and now maintain) [Surprise](http://surpriselib.com), a Python library to
@@ -24,5 +24,4 @@ took me way too long to understand.
 
 I love eating, rock climbing, hiking, eating (again), and coding.
 
-Here is my (probably outdated) [résumé]({{ site.url
-}}/assets/Nicolas_Hug_CV.pdf).
+Here is my (often outdated) [résumé]({{ site.url }}/assets/Nicolas_Hug_CV.pdf).

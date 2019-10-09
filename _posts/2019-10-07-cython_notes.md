@@ -104,7 +104,7 @@ use numpy arrays since these are objects: use views instead! If you call a
 function, it needs to be labeled as a `nogil` function, like so:
 
 ```python
-cdef void my_func(int [:] some_view) nogil:
+cdef void my_func() nogil:
     # ...
 ```
 
