@@ -11,3 +11,10 @@
 code {
   font-size: 18px;
 }
+
+.centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
+}
