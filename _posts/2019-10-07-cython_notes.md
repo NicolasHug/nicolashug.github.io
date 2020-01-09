@@ -33,13 +33,14 @@ strongly suggest to:
 About debugging: there is, AFAIK, no debugger for Cython. You can of course
 still use a debugger for the generated C-code, but that's not really
 convenient. Personally, I use the good old ``print()`` statements with
-extensive unit tests. It can become pretty annoying when you're debugging a
-``nogil`` section where ``print()`` is forbidden though.
+extensive unit tests. Tip from Jérémie in the comments: inside a ``nogil``
+section (where ``print()`` statements are forbidden), you can temporarily
+re-acquire the gil back with ``with gil:`` and use ``print()``.
 
 # Python interactions and how to avoid them
 
-Cython generates C code that conceptually operates in 2 different modes:
-either in "Python mode" or in "pure C mode".
+Cython generates C code that conceptually operates in 2 different modes: either
+in "Python mode" or in "pure C mode".
 
 Python mode is when the code manipulates Python objects, through the
 [Python/C API](https://docs.python.org/3/c-api/intro.html): for example when
@@ -53,14 +54,14 @@ instead (see below).
 
 My simplistic proxy is that Python interaction = slow = bad, while pure C
 mode = fast = good. When writing Cython, you want to avoid Python
-interactions as much as possible, especially deep inside for loops. The
+interactions as much as possible, especially deep inside `for` loops. The
 command ``cython -a file.pyx`` will output a html file of the generated C
 code, where each line has a different shade of yellow: more yellow means
 more Python interactions.
 
 When I write Cython code, I always use ``cython -a`` on every file. My goal
 is that all the file is white (i.e. no interaction), although interactions
-are unavoidable in some places:typically when arguments are passed in, or
+are unavoidable in some places: typically when arguments are passed in, or
 when returning Python objects.
 
 Some tips to avoid Python interactions:
@@ -91,7 +92,7 @@ multi-threading in at least 2 ways:
 - Directly in Cython, using OpenMP with
   [prange](https://cython.readthedocs.io/en/latest/src/userguide/parallelism.html).
 - Using e.g. `joblib` with a multi-threading backend (the parts of your code
-  that will be parallelized are the parts the release the GIL)
+  that will be parallelized are the parts that release the GIL)
 
 We use both in scikit-learn.
 
