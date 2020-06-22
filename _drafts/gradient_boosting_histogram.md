@@ -19,32 +19,74 @@ up with these ideas: we took inspiration from
 [LightGBM](https://github.com/microsoft/LightGBM). XGBoost also implemented
 this as their ['hist'](https://github.com/dmlc/xgboost/issues/1950) method.
 
-This post assumes a working knowledge of gradient boosting (refer to this
-[previous post]({% post_url 2019-06-01-gradient_boosting_descent%}) for a
-refresher!)
+Beware, this post is quite technical! We will assume a working knowledge of
+gradient boosting (refer to this [previous post]({% post_url
+2019-06-01-gradient_boosting_descent%}) for a refresher!). While we will
+review the tree-building process, having a good background on decision trees
+is also recommended.
 
 ----
 
 ## What is slow: quick background on decision trees
 
-As we explained [before]({% post_url
-2019-06-01-gradient_boosting_descent%}), training a GBDT consists in
-iteratively training decision trees. The trees are trained to predict
-gradients (also sometimes incorporating info about second-order derivatives,
-abusively called hessians, that we will ignore for simplicity). Each sample
-has its own gradient (a scalar), and gradients are easy and cheap to
-compute.
+Let's focus on what we need to optimize first.
 
-Trees are grown in a greedy fashion, starting from the root node to the
-leaves. All the samples first belong to the root. We then search for the
-best **split point**. A split point is identified by a feature index, and a
-threshold value. Samples whose value for the given feature is less than the
-threshold will be mapped to the left child, and the rest will be mapped to
-the right child. This process of finding the best split point is repeated at
-each node until some stopping criteria is met (e.g. maximum depth of the
-tree).
+As we explained in our previous post (link above), the GBDT training
+procedure is an iterative process where at each iteration, we:
+- compute the gradient of each sample
+- train a tree to predict these gradients
 
-For a given node, finding the best split point roughly looks like this[^1]:
+Gradients are cheap to compute. The bottleneck of gradient boosting is the
+tree building process.
+
+Let's have a quick refresher on decision tree training. Trees are grown in a
+greedy fashion, starting from the root node to the leaves. All the samples
+first belong to the root. We then search for the best **split point**. A
+split point is a pair `(feature_idx, threhsold)`. The samples whose value
+for the given feature is less than the threshold will be mapped to the left
+child, and the rest of them will be mapped to the right child. This process
+of finding the best split point is repeated at each node until some stopping
+criteria is met (e.g. maximum depth of the tree).
+
+Now, the slow part of that tree building process is the split point finding
+procedure that happens at each node. For a given node, finding the best
+split point (i.e. the best pair `(feature_idx, threshold)`) consists of finding
+the best threshold, for each feature. For a given feature, finding the best
+threshold consists of sorting the feature values, and compute a **gain** for
+each possible value. Simply put:
+
+```py
+def find_best_split(samples_at_node, gradients_at_node):
+    # samples at node: 2d array of shape (n_samples_at_node, n_features)
+    # gradients_at_node: 1d array of size n_samples_at_node
+    best_gain = -1
+    for feature_idx in range(n_features):
+        sorted_feature = sort(samples_at_node[:, feature_idx])  # slow
+        for threshold in sorted_features:  # slow (lots of values)
+            gain = compute_gain((feature_idx, threshold),
+                                samples_at_node, gradients_at_node)
+
+            if gain > current_best_gain:
+                # keep track of best_feature_idx and best_threshold
+                # ...
+
+    return best_feature_idx, best_threhsold
+```
+
+
+The `gain` is a numerical quantity that tells us how good it would be to
+split at a given `(feature_idx, threshold)` pair. How it's computed is out of
+scope here, but the important thing to note is that *the gain depends on
+**sums** of gradients*. Namely, the gain of a split point depends on:
+- the sum of the gradients at the curren node (i.e. `sum(gradients_at_node)`)
+- the sum of the gradients in the potential left child
+- the sum of the gradients in the potential right child
+
+The reason we sort the feature values is for these sums of gradients to be
+computed efficiently. **This sorting step is the main bottleneck of
+algorithm**.
+
+<!-- For a given node, finding the best split point roughly looks like this[^1]:
 
 [^1]:
     We're describing the case of continuous features here. Categorical
@@ -144,7 +186,7 @@ def find_best_split_point(sum_gradients_node, histograms):
                 best_split_point = (feature_idx, threshold)
 
     return best_split_point
-```
+``` -->
 
 
 <!-- leave this here for better footnotes rendering -->
