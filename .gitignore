@@ -5,5 +5,7 @@ Gemfile.lock
 vendor/
 .ipynb_checkpoints/
 
+.vscode
+
 
 *.swp
