@@ -22,6 +22,4 @@ build and analyze recommender systems.
 In the [blog section]({{ site.url }}/blog), I try to write about stuff that
 took me way too long to understand.
 
-I love eating, rock climbing, hiking, eating (again), and coding.
-
 Here is my (often outdated) [résumé]({{ site.url }}/assets/Nicolas_Hug_CV.pdf).
