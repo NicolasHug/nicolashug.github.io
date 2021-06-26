@@ -3,7 +3,7 @@ permalink: /:categories/:title
 
 # main text of home
 name: Nicolas Hug
-bio: Associate Research Scientist at Columbia University
+bio: ML Engineer
 
 # twitter summary info
 # description: A blog about technology and stuff related
@@ -40,7 +40,7 @@ email: contact@nicolas-hug.com
 authors:
     nico:
         name: Nicolas Hug
-        bio: Associate Research Scientist at Columbia University
+        bio: ML Engineer
         external-image: false
         picture: assets/images/nico.jpg
         twitter: hug_nicolas
