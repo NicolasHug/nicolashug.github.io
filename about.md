@@ -15,12 +15,12 @@ I'm currently working at Facebook AI in London, where I focus on
 [TorchVision](https://pytorch.org/vision/). Prior to that, I was working in
 New York at Columbia University, where I was maintaining and contributing to
 [scikit-learn](http://scikit-learn.org/). During my PhD
-([link](http://nicolas-hug.com/assets/phd.pdf)) I developed (and now
-maintain) [Surprise](http://surpriselib.com), a Python library to build and
-analyze recommender systems.
+([link](http://nicolas-hug.com/assets/phd.pdf)) I developed 
+[Surprise](http://surpriselib.com), a Python library to build and analyze
+recommender systems.
 
-In the [blog section]({{ site.url }}/blog), I try to write about stuff that
-took me way too long to understand. During my free time I like to climb stuff
+In the [blog section]({{ site.url }}/blog), I try to write about things that
+take me way too long to understand. During my free time I like to climb stuff
 and eat cheese.
 
 Here is my (often outdated) [résumé]({{ site.url }}/assets/Nicolas_Hug_CV.pdf).
