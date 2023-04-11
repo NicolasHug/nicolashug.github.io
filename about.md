@@ -6,7 +6,6 @@ layout: page
 <img style="border-radius:100%" alt="Nicolas Hug" src="{{ site.url }}/assets/images/nico.jpg">
 
 Hi, I'm Nicolas!
-(This picture is a million years old.)
 
 I like to develop open source software for machine learning.
 
