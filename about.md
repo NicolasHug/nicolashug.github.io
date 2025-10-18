@@ -9,7 +9,7 @@ Hi, I'm Nicolas! I develop open source software for machine learning.
 
 I'm currently in the [PyTorch](https://pytorch.org/) team at Meta. My main focus
 is pre-proc and perf, and I'm the primary dev for both
-[TorchVision](https://pytorch.org/vision/) and
+[TorchVision](https://github.com/pytorch/vision) and
 [TorchCodec](https://github.com/meta-pytorch/torchcodec).
 
 Prior to that, I was living my best life as a blissfully unburdened postdoc, and
