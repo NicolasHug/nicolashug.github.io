@@ -5,21 +5,18 @@ layout: page
 
 <img style="border-radius:100%" alt="Nicolas Hug" src="{{ site.url }}/assets/images/nico.jpg">
 
-Hi, I'm Nicolas!
+Hi, I'm Nicolas! I develop open source software for machine learning.
 
-I like to develop open source software for machine learning.
+I'm currently in the [PyTorch](https://pytorch.org/) team at Meta. My main focus
+is pre-proc and perf, and I'm the primary dev for both
+[TorchVision](https://pytorch.org/vision/) and
+[TorchCodec](https://github.com/meta-pytorch/torchcodec).
 
-I'm currently working at Facebook AI in London, where I focus on
-[PyTorch](https://pytorch.org/) and more specifically on
-[TorchVision](https://pytorch.org/vision/). Prior to that, I was working in
-New York at Columbia University, where I was maintaining and contributing to
-[scikit-learn](http://scikit-learn.org/). During my PhD
-([link](http://nicolas-hug.com/assets/phd.pdf)) I developed 
-[Surprise](http://surpriselib.com), a Python library to build and analyze
-recommender systems.
+Prior to that, I was living my best life as a blissfully unburdened postdoc, and
+part of the core-dev team of [scikit-learn](http://scikit-learn.org/)
+for a few years. During my PhD, I developed
+[Surprise](https://github.com/NicolasHug/Surprise).
 
-In the [blog section]({{ site.url }}/blog), I try to write about things that
-take me way too long to understand. During my free time I like to climb stuff
-and eat cheese.
-
-Here is my (often outdated) [résumé]({{ site.url }}/assets/Nicolas_Hug_CV.pdf).
+In the [blog section]({{ site.url }}/blog), I write about things that take me
+too long to understand. During my free time I like to climb stuff and eat
+cheese.
